@@ -2,6 +2,7 @@ import { Stack, Typography, Box, Button } from "@mui/material";
 import NumberInput from "./NumberInput";
 import { useState } from "react";
 import { format } from 'date-fns/format';
+import { add } from 'date-fns';
 
 export default function EtaCalculator() {
   const [duration, setDuration] = useState({ days: 0, hours: 0, minutes: 0 });
@@ -29,8 +30,7 @@ export default function EtaCalculator() {
   return (
     <Stack spacing={2}>
       <Typography variant="body1" gutterBottom>
-        You can use this to estimate when the coffee in your mail
-        will be gone if you do not use it.
+        You can use this to estimate when any your mail will be gone if you do not claim it.
       </Typography>
       <Box component="fieldset" sx={{ width: "fit-content" }}>
         <legend><Typography variant="body1">Remaining Duration</Typography></legend>
@@ -43,21 +43,17 @@ export default function EtaCalculator() {
       <Button
         variant="contained"
         sx={{ width: "fit-content" }}
-        onClick={() => setExpire(new Date())}
+        onClick={() => setExpire(add(new Date(), { days: duration.days, hours: duration.hours, minutes: duration.minutes }))}
       >
         Calculate
       </Button>
+      {/* reset button to set remaining duration to zeros and also remove result */}
       {expire &&
         <Typography variant="body1" gutterBottom>
-          {format(expire, 'PPPPpp')}
+          Based on the clock shown in the title, the mail with the given remaining duration is estimated
+          to be gone by <strong>{format(expire, 'PPPPpp')}</strong>
         </Typography>
       }
-      <Typography variant="body1" gutterBottom>
-        {`${duration.days} days, ${duration.hours} hours, ${duration.minutes} minutes`}
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        {`${typeof (duration.days)}--${typeof (duration.hours)}--${typeof (duration.minutes)}`}
-      </Typography>
     </Stack>
   )
 }
