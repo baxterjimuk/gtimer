@@ -30,7 +30,8 @@ export default function EtaCalculator() {
   return (
     <Stack spacing={2}>
       <Typography variant="body1" gutterBottom>
-        You can use this to estimate when any your mail will be gone if you do not claim it.
+        You can use this to estimate <strong>WHEN</strong> any mail of yours will be gone
+        if you do not claim it within the given duration.
       </Typography>
       <Box component="fieldset" sx={{ width: "fit-content" }}>
         <legend><Typography variant="body1">Remaining Duration</Typography></legend>
@@ -40,13 +41,25 @@ export default function EtaCalculator() {
           <NumberInput id='minute-input' name="minutes" label='Minutes' value={duration.minutes} handleChange={handleChange(59)} />
         </Stack>
       </Box>
-      <Button
-        variant="contained"
-        sx={{ width: "fit-content" }}
-        onClick={() => setExpire(add(new Date(), { days: duration.days, hours: duration.hours, minutes: duration.minutes }))}
-      >
-        Calculate
-      </Button>
+      <Stack direction="row" spacing={1}>
+        <Button
+          variant="contained"
+          sx={{ width: "fit-content" }}
+          onClick={() => setExpire(add(new Date(), { days: duration.days, hours: duration.hours, minutes: duration.minutes }))}
+        >
+          Calculate
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ width: "fit-content" }}
+          onClick={() => {
+            setDuration({ days: 0, hours: 0, minutes: 0 });
+            setExpire(null);
+          }}
+        >
+          Reset
+        </Button>
+      </Stack>
       {/* reset button to set remaining duration to zeros and also remove result */}
       {expire &&
         <Typography variant="body1" gutterBottom>
