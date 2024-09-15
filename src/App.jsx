@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { createContext, useContext, useMemo, useState } from "react";
 import { format } from 'date-fns/format';
 import EtaCalculator from "./components/EtaCalculator";
+import StaminaTimeCalculator from "./components/StaminaTimeCalculator";
 
 const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -32,6 +33,7 @@ function MyApp() {
         {/* Do it here first. later extract to it's own component. */}
         <Box sx={{ m: 2 }}>
           <EtaCalculator />
+          <StaminaTimeCalculator />
         </Box>
       </Box>
     </Container>
