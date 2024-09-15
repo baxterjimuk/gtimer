@@ -35,15 +35,15 @@ export default function StaminaTimeCalculator() {
       <Typography variant="body1" gutterBottom>
         Amount of Stamina to reach:
       </Typography>
-      <NumberInput id='max-stamina-input' name="max-stamina" value={val.maxStamina} handleChange={handleChange(90)} />
+      <NumberInput id='max-stamina-input' name="maxStamina" value={val.maxStamina} handleChange={handleChange(90)} />
       <Typography variant="body1" gutterBottom>
         Current Stamina:
       </Typography>
-      <NumberInput id='current-stamina-input' name="current-stamina" value={val.currentStamina} handleChange={handleChange(90)} />
+      <NumberInput id='current-stamina-input' name="currentStamina" value={val.currentStamina} handleChange={handleChange(90)} />
       <Typography variant="body1" gutterBottom>
         Minute(s) taken for Stamina to regenerate by one (1) point:
       </Typography>
-      <NumberInput id='one-stamina-duration-input' name="one-stamina-duration" value={val.oneStaminaDuration} handleChange={handleChange(59)} />
+      <NumberInput id='one-stamina-duration-input' name="oneStaminaDuration" value={val.oneStaminaDuration} handleChange={handleChange(59)} />
       <Stack direction="row" spacing={1}>
         <Button
           variant="contained"
