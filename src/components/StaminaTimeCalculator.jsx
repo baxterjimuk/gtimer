@@ -48,7 +48,7 @@ export default function StaminaTimeCalculator() {
         <Button
           variant="contained"
           sx={{ width: "fit-content" }}
-          onClick={() => setVal(add(new Date(), { minutes: ((val.maxStamina - val.currentStamina) * val.oneStaminaDuration) }))}
+          onClick={() => setResult(add(new Date(), { minutes: ((val.maxStamina - val.currentStamina) * val.oneStaminaDuration) }))}
         >
           Calculate
         </Button>
@@ -65,9 +65,8 @@ export default function StaminaTimeCalculator() {
       </Stack>
       {result &&
         <Typography variant="body1" gutterBottom>
-          Based on the clock shown in the title,
-          Stamina is estimated to be <strong>{val.maxStamina}</strong>
-          by <strong>{format(result, 'PPPPpp')}</strong>
+          Based on the clock shown in the title, Stamina is estimated
+          to be <strong>{val.maxStamina}</strong> by <strong>{format(result, 'PPPPpp')}</strong>
         </Typography>
       }
     </Stack>
