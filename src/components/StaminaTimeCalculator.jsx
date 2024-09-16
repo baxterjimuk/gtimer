@@ -1,4 +1,4 @@
-import { Stack, Typography, Button } from "@mui/material";
+import { Stack, Typography, Button, Card, CardContent, CardHeader } from "@mui/material";
 import NumberInput from "./NumberInput";
 import { useState } from "react";
 import { format } from 'date-fns/format';
@@ -31,44 +31,49 @@ export default function StaminaTimeCalculator() {
   }
 
   return (
-    <Stack spacing={2}>
-      <Typography variant="body1" gutterBottom>
-        Amount of Stamina to reach:
-      </Typography>
-      <NumberInput id='max-stamina-input' name="maxStamina" value={val.maxStamina} handleChange={handleChange(90)} />
-      <Typography variant="body1" gutterBottom>
-        Current Stamina:
-      </Typography>
-      <NumberInput id='current-stamina-input' name="currentStamina" value={val.currentStamina} handleChange={handleChange(90)} />
-      <Typography variant="body1" gutterBottom>
-        Minute(s) taken for Stamina to regenerate by one (1) point:
-      </Typography>
-      <NumberInput id='one-stamina-duration-input' name="oneStaminaDuration" value={val.oneStaminaDuration} handleChange={handleChange(59)} />
-      <Stack direction="row" spacing={1}>
-        <Button
-          variant="contained"
-          sx={{ width: "fit-content" }}
-          onClick={() => setResult(add(new Date(), { minutes: ((val.maxStamina - val.currentStamina) * val.oneStaminaDuration) }))}
-        >
-          Calculate
-        </Button>
-        <Button
-          variant="contained"
-          sx={{ width: "fit-content" }}
-          onClick={() => {
-            setVal(({ maxStamina: 90, currentStamina: 0, oneStaminaDuration: 10 }));
-            setResult(null);
-          }}
-        >
-          Reset
-        </Button>
-      </Stack>
-      {result &&
-        <Typography variant="body1" gutterBottom>
-          Based on the clock shown in the title, Stamina is estimated
-          to be <strong>{val.maxStamina}</strong> by <strong>{format(result, 'PPPPpp')}</strong>
-        </Typography>
-      }
-    </Stack>
+    <Card variant="outlined">
+      <CardHeader title="STAMINA TARGET TIME" />
+      <CardContent>
+        <Stack spacing={1}>
+          <Typography variant="body1" gutterBottom>
+            Amount of Stamina to reach:
+          </Typography>
+          <NumberInput id='max-stamina-input' name="maxStamina" value={val.maxStamina} handleChange={handleChange(90)} />
+          <Typography variant="body1" gutterBottom>
+            Current Stamina:
+          </Typography>
+          <NumberInput id='current-stamina-input' name="currentStamina" value={val.currentStamina} handleChange={handleChange(90)} />
+          <Typography variant="body1" gutterBottom>
+            Minute(s) taken for Stamina to regenerate by one (1) point:
+          </Typography>
+          <NumberInput id='one-stamina-duration-input' name="oneStaminaDuration" value={val.oneStaminaDuration} handleChange={handleChange(59)} />
+          <Stack direction="row" spacing={1}>
+            <Button
+              variant="contained"
+              sx={{ width: "fit-content" }}
+              onClick={() => setResult(add(new Date(), { minutes: ((val.maxStamina - val.currentStamina) * val.oneStaminaDuration) }))}
+            >
+              Calculate
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ width: "fit-content" }}
+              onClick={() => {
+                setVal(({ maxStamina: 90, currentStamina: 0, oneStaminaDuration: 10 }));
+                setResult(null);
+              }}
+            >
+              Reset
+            </Button>
+          </Stack>
+          {result &&
+            <Typography variant="body1" gutterBottom>
+              Based on the clock shown in the title, Stamina is estimated
+              to be <strong>{val.maxStamina}</strong> by <strong>{format(result, 'PPPPpp')}</strong>
+            </Typography>
+          }
+        </Stack>
+      </CardContent>
+    </Card>
   )
 }

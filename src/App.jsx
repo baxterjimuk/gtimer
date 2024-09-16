@@ -1,4 +1,4 @@
-import { Container, Box, Typography, IconButton, CssBaseline, AppBar, Toolbar } from "@mui/material"
+import { Container, Box, Typography, IconButton, CssBaseline, AppBar, Toolbar, Grid } from "@mui/material"
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from '@mui/material/styles/createTheme';
 import useTheme from "@mui/material/styles/useTheme";
@@ -19,7 +19,7 @@ function MyApp() {
   const colorMode = useContext(ColorModeContext);
   return (
     <Container>
-      <Box sx={{ m: 1 }}>
+      <Box sx={{ m: 1, flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar variant="dense">
             <Typography variant="h6" component="h1" align="left" sx={{ m: 1, flexGrow: 1 }}>
@@ -31,10 +31,18 @@ function MyApp() {
           </Toolbar>
         </AppBar>
         {/* Do it here first. later extract to it's own component. */}
-        <Box sx={{ m: 2 }}>
+        {/* <Box sx={{ m: 2 }}>
           <EtaCalculator />
           <StaminaTimeCalculator />
-        </Box>
+        </Box> */}
+        <Grid container spacing={1} sx={{ mt: 0.5 }}>
+          <Grid item xs={12} md={6} lg={4}>
+            <EtaCalculator />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <StaminaTimeCalculator />
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   )
