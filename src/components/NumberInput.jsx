@@ -4,7 +4,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 
 const NumberInput = ({ id, name, label, value, handleChange }) => {
   return (
-    <FormControl sx={{ maxWidth: "10ch" }}>
+    <FormControl sx={{ width: "10ch" }}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <OutlinedInput
         id={id}
