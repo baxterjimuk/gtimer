@@ -9,6 +9,7 @@ import { createContext, useContext, useMemo, useState } from "react";
 import { format } from 'date-fns/format';
 import EtaCalculator from "./components/EtaCalculator";
 import StaminaTimeCalculator from "./components/StaminaTimeCalculator";
+import ColoTixCalculator from "./components/ColoTixCalculator";
 
 const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -17,10 +18,11 @@ function MyApp() {
   setInterval(() => setNow(new Date()), 1000);
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
+
   return (
     <Container>
       <Box sx={{ m: 1, flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="sticky">
           <Toolbar variant="dense">
             <Typography variant="h6" component="h1" align="left" sx={{ m: 1, flexGrow: 1 }}>
               {format(now, 'PPPPpp')}
@@ -31,16 +33,15 @@ function MyApp() {
           </Toolbar>
         </AppBar>
         {/* Do it here first. later extract to it's own component. */}
-        {/* <Box sx={{ m: 2 }}>
-          <EtaCalculator />
-          <StaminaTimeCalculator />
-        </Box> */}
         <Grid container spacing={1} sx={{ mt: 0.5 }}>
           <Grid item xs={12} md={6} lg={4}>
             <EtaCalculator />
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             <StaminaTimeCalculator />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <ColoTixCalculator />
           </Grid>
         </Grid>
       </Box>

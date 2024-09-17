@@ -5,10 +5,11 @@ import { format } from 'date-fns/format';
 import { add } from 'date-fns';
 
 export default function StaminaTimeCalculator() {
-  // const [maxStamina, setMaxStamina] = useState();
-  // const [currentStamina, setCurrentStamina] = useState();
-  // const [oneStaminaDuration, setOneStaminaDuration] = useState();
-  const [val, setVal] = useState({ maxStamina: 90, currentStamina: 0, oneStaminaDuration: 10 });
+  const [val, setVal] = useState({
+    maxStamina: 90,
+    currentStamina: 0,
+    oneStaminaDuration: 10
+  });
   const [result, setResult] = useState();
 
   const handleChange = (max) => (e) => {
